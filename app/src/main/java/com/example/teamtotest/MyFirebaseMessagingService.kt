@@ -89,7 +89,6 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
         //Notification 소리 설정
         val notificationSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION)
 
-
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             val notificationBuilder = NotificationCompat.Builder(this, channel_id)
                 .setDefaults(Notification.DEFAULT_ALL)

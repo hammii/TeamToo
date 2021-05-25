@@ -10,13 +10,12 @@ import com.example.teamtotest.activity.FinalTestActivity
 import kotlinx.android.synthetic.main.dialog_final_test.*
 import kotlinx.android.synthetic.main.item_final_test_member.view.*
 
-class FinalTestDialog(activity : FinalTestActivity, memberName : String, view : View, position : Int){
+class FinalTestDialog(private var activity: FinalTestActivity,
+                      private var memberName: String, view : View, private var position: Int
+){
 
-    private var activity : FinalTestActivity = activity
     private var context : Context = activity
-    private var memberName : String = memberName
     private var viewholder : View = view
-    private var position : Int = position
 
     @SuppressLint("ResourceAsColor", "Range")
     fun callDialog(){
