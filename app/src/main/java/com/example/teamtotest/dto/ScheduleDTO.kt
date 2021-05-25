@@ -27,8 +27,7 @@ data class ScheduleDTO(
         parcel.readInt(),
         parcel.readString(),
         parcel.readInt()
-    ) {
-    }
+    )
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
         parcel.writeString(name)

@@ -1,6 +1,5 @@
 package com.example.teamtotest.fragment
 
-
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -22,8 +21,8 @@ import java.util.*
 
 class Frag2 : Fragment() {
 
-    private var ProjectInfoList: ArrayList<HashMap<String, String>> = ArrayList<HashMap<String, String>>()
-    var myProjectPIDlist: ArrayList<String> = ArrayList<String>()
+    private var ProjectInfoList: ArrayList<HashMap<String, String>> = ArrayList()
+    var myProjectPIDlist: ArrayList<String> = ArrayList()
 
     private lateinit var firebaseAuth: FirebaseAuth
     private lateinit var firebaseDatabase: FirebaseDatabase
@@ -31,9 +30,6 @@ class Frag2 : Fragment() {
     private lateinit var listener: ValueEventListener
 
     lateinit var mAdapter: ProjectListAdapter
-
-    val testString : String = "AAA"
-
 
     override fun onStart() {
         frag2_loadingCircle.visibility = View.VISIBLE
@@ -53,25 +49,16 @@ class Frag2 : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
         val view = inflater.inflate(R.layout.bottombar_fragment2, null)
 
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseDatabase = FirebaseDatabase.getInstance()
 
-        mAdapter =
-            ProjectListAdapter(ProjectInfoList, requireActivity())
-        //my_recycler_view.setAdapter(mAdapter)
+        mAdapter = ProjectListAdapter(ProjectInfoList, requireActivity())
         view.projectlist_recycler_view.adapter = mAdapter
         mAdapter.notifyDataSetChanged()
 
-
-
         view.add_button.setOnClickListener {
-//            val intent = Intent(context, AddProjectActivity::class.java)
-//            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
-//            startActivity(intent)
-
             (requireActivity() as NavigationbarActivity).toProject()
         }
 
@@ -108,71 +95,81 @@ class Frag2 : Fragment() {
     }
 
     private fun setListener_DataFromMyProjects() {
-        // private HashMap<String, String> ProjectInfo;
 
         listener = object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 // 각각 프로젝트별로, 멤버중에 나 자신이 있는지 확인.
                 ProjectInfoList.clear()    // 갱신될 때 이미 있던 데이터는 날리기
-                val myUID : String = firebaseAuth!!.currentUser!!.uid
-                var readCnt : Int = 0
+                val myUID: String = firebaseAuth!!.currentUser!!.uid
+                var readCnt: Int = 0
                 for (snapshot in dataSnapshot.children) {
                     for (i in myProjectPIDlist.indices) {
                         if (myProjectPIDlist.get(i) == snapshot.key) { // 내 프로젝트면 ~
                             val projectInfo = HashMap<String, String>()
                             projectInfo["PID"] = snapshot.key.toString()
-                            projectInfo["projectName"] = snapshot.child("projectName").value!!.toString()
+                            projectInfo["projectName"] =
+                                snapshot.child("projectName").value!!.toString()
 
-                            val membersDTO = snapshot.child("members").getValue(MembersDTO::class.java)
+                            val membersDTO =
+                                snapshot.child("members").getValue(MembersDTO::class.java)
                             projectInfo["howManyMembers"] = membersDTO!!.UID_list!!.size.toString()
 
 
                             val dateFormat = SimpleDateFormat("yyyyMMddHHmmss")
-//                            val dateFormat = SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
-                            var date : String?= null
-                            var latestmessageDTO : MessageDTO?=null
-                            var date_formatted :String ?= null
-                            var latest_date_original :Date ?= null
+                            var date: String? = null
+                            var latestmessageDTO: MessageDTO? = null
+                            var date_formatted: String? = null
+                            var latest_date_original: Date? = null
 
-                            for(messageSnapshot : DataSnapshot in snapshot.child("messageList").children){  // 최신메세지 찾기 / 안읽은 메세지 카운트
+                            for (messageSnapshot: DataSnapshot in snapshot.child("messageList").children) {  // 최신메세지 찾기 / 안읽은 메세지 카운트
 
                                 val utc = dateFormat.parse(messageSnapshot.key)
-                                val date_original = Date(utc.time + Calendar.getInstance().timeZone.getOffset(utc.time))
+                                val date_original =
+                                    Date(utc.time + Calendar.getInstance().timeZone.getOffset(utc.time))
                                 date_formatted = dateFormat.format(date_original)
 
-//                                var tmp = messageSnapshot.key.toString()
-                                if(date==null || date < date_formatted){
+                                if (date == null || date < date_formatted) {
 
                                     date = date_formatted
                                     latest_date_original = date_original
-                                    latestmessageDTO = messageSnapshot.getValue(MessageDTO::class.java)!!
+                                    latestmessageDTO =
+                                        messageSnapshot.getValue(MessageDTO::class.java)!!
                                 }
-                                val messageDTO = messageSnapshot.getValue(MessageDTO::class.java)  // 데이터를 가져와서
-                                if(!messageDTO!!.read!!.contains(myUID)) { // 내 uid가 없으면 count!
+                                val messageDTO =
+                                    messageSnapshot.getValue(MessageDTO::class.java)  // 데이터를 가져와서
+                                if (!messageDTO!!.read!!.contains(myUID)) { // 내 uid가 없으면 count!
                                     readCnt++
                                 }
                             }
                             projectInfo["noReadMessageCount"] = readCnt.toString()
-                            readCnt=0 // 안읽은 메세지 개수 알려주고 다시 초기화~
+                            readCnt = 0 // 안읽은 메세지 개수 알려주고 다시 초기화~
 
 //                            for(messageSnapshot : DataSnapshot in snapshot.child("messageList").children){
 //                                if(date == messageSnapshot.key.toString()){
 //                                    latestmessageDTO = messageSnapshot.getValue(MessageDTO::class.java)!!
 //                                }
 //                            }
-                            if(latestmessageDTO!=null){
+                            if (latestmessageDTO != null) {
                                 projectInfo["lastMessage"] = latestmessageDTO!!.message
 
-                                var cal : Calendar = Calendar.getInstance()
+                                var cal: Calendar = Calendar.getInstance()
                                 cal.time = latest_date_original
 
-                                if(cal.get(Calendar.DATE)==Calendar.getInstance().get(Calendar.DATE)) { // 오늘 보낸 메세지면 시간을 나타내주고
+                                if (cal.get(Calendar.DATE) == Calendar.getInstance()
+                                        .get(Calendar.DATE)
+                                ) { // 오늘 보낸 메세지면 시간을 나타내주고
                                     val date_formatted = dateFormat.format(latest_date_original)
-                                    projectInfo["lastMessageSentTime"] = date_formatted.substring(8, 10)+":"+ date_formatted.substring(10, 12)
-                                }else{ // 오늘 보낸 메세지가 아니면 -월-일 이라고 표현.
-                                    projectInfo["lastMessageSentTime"] = ""+(cal.get(Calendar.MONTH)+1)+"월 "+(cal.get(Calendar.DATE))+"일"
+                                    projectInfo["lastMessageSentTime"] = date_formatted.substring(
+                                        8,
+                                        10
+                                    ) + ":" + date_formatted.substring(10, 12)
+                                } else { // 오늘 보낸 메세지가 아니면 -월-일 이라고 표현.
+                                    projectInfo["lastMessageSentTime"] =
+                                        "" + (cal.get(Calendar.MONTH) + 1) + "월 " + (cal.get(
+                                            Calendar.DATE
+                                        )) + "일"
                                 }
-                            }else{
+                            } else {
                                 projectInfo["lastMessage"] = ""
                                 projectInfo["lastMessageSentTime"] = ""
                             }

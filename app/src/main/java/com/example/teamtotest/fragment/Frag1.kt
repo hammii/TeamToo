@@ -20,7 +20,7 @@ import java.util.*
 import kotlin.collections.ArrayList
 import kotlin.math.absoluteValue
 
-class Frag1 : Fragment (){
+class Frag1 : Fragment() {
 
     private var todoList: ArrayList<TodoDTO> = ArrayList<TodoDTO>()
     private var fileList: ArrayList<FileDTO> = ArrayList<FileDTO>()
@@ -29,9 +29,9 @@ class Frag1 : Fragment (){
     private lateinit var fileRVAdapter: FileRVAdapterMain
     private lateinit var progressbarAdapterMain: ProgressbarAdapterMain
     var myProjectPIDlist: ArrayList<String> = ArrayList<String>()
-    var myProjectDTOs : ArrayList<ProjectDTO?> = ArrayList<ProjectDTO?>()
+    var myProjectDTOs: ArrayList<ProjectDTO?> = ArrayList<ProjectDTO?>()
 
-    private lateinit var firebaseAuth : FirebaseAuth
+    private lateinit var firebaseAuth: FirebaseAuth
     private lateinit var firebaseDatabase: FirebaseDatabase
     private lateinit var databaseReference: DatabaseReference
     private var PID: String? = null
@@ -46,12 +46,11 @@ class Frag1 : Fragment (){
         firebaseDatabase = FirebaseDatabase.getInstance()
         findMyProjectFromFirebaseDB() // 내 프로젝트 찾음
 
-        //
         view.dashboard_progress_recycler_view.setHasFixedSize(true)
-        progressbarAdapterMain = ProgressbarAdapterMain(requireActivity(), myProjectDTOs, myProjectPIDlist)
+        progressbarAdapterMain =
+            ProgressbarAdapterMain(requireActivity(), myProjectDTOs, myProjectPIDlist)
         view.dashboard_progress_recycler_view.adapter = progressbarAdapterMain
         progressbarAdapterMain.notifyDataSetChanged()
-
 
         view.dashboard_todo_recycler_view.setHasFixedSize(true)
         todoRVAdapter = TodoRVAdapterMain(requireActivity(), todoList)
@@ -69,10 +68,10 @@ class Frag1 : Fragment (){
         return view
     }
 
-    private fun sortByDate(){
+    private fun sortByDate() {
         //Bubble sort
-        for(i in 0 until todoList.size-1){
-            for(j  in 0 until todoList.size-1-i) {
+        for (i in 0 until todoList.size - 1) {
+            for (j in 0 until todoList.size - 1 - i) {
                 if (todoList[j].deadLine > todoList[j + 1].deadLine) {
                     val temp = todoList[j]
                     todoList[j] = todoList[j + 1]
@@ -82,11 +81,11 @@ class Frag1 : Fragment (){
         }
     }
 
-    private fun removeLastTodoList(){
+    private fun removeLastTodoList() {
         val today = Calendar.getInstance()
-        var deadCal = Calendar.getInstance()
+        val deadCal = Calendar.getInstance()
 
-        var newTodoData : ArrayList<TodoDTO> = ArrayList<TodoDTO>()
+        val newTodoData: ArrayList<TodoDTO> = ArrayList<TodoDTO>()
 
         for (position in todoList.indices) {
 
@@ -96,31 +95,34 @@ class Frag1 : Fragment (){
             when {
                 diff_day >= 0 -> {
                     newTodoData.add(todoList[position])
-                    Log.d("Not Remove Position-->", todoList[position].projectdata!!.projectName.toString())
+                    Log.d(
+                        "Not Remove Position-->",
+                        todoList[position].projectdata!!.projectName.toString()
+                    )
                 }
             }
         }
         todoList.clear()
-        for(i in newTodoData.indices){
+        for (i in newTodoData.indices) {
             todoList.add(newTodoData[i])
         }
 
     }
 
 
-    private fun setTodoListListener(){
+    private fun setTodoListListener() {
         val myUID = firebaseAuth.currentUser!!.uid
         val dbTodoEventListener = object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 todoList.clear()
-                for (projectData in dataSnapshot.children){
-                    val projectDTO : ProjectDTO = projectData.getValue(ProjectDTO::class.java)!!
-                    if(myProjectPIDlist.contains(projectData.key.toString())) {
-                        for(data in projectData.children) {
-                            if(data.key=="todoList") {
-                                for(todoData in data.children) {
+                for (projectData in dataSnapshot.children) {
+                    val projectDTO: ProjectDTO = projectData.getValue(ProjectDTO::class.java)!!
+                    if (myProjectPIDlist.contains(projectData.key.toString())) {
+                        for (data in projectData.children) {
+                            if (data.key == "todoList") {
+                                for (todoData in data.children) {
                                     val todoDTO = todoData.getValue(TodoDTO::class.java)
-                                    if(todoDTO!!.performers.contains(myUID)) { // 내 할일일 경우에만 리스트에 표시
+                                    if (todoDTO!!.performers.contains(myUID)) { // 내 할일일 경우에만 리스트에 표시
                                         projectDTO.pid = projectData.key.toString()
                                         todoDTO.projectdata = projectDTO
                                         todoDTO.todoID = todoData.key
@@ -145,16 +147,16 @@ class Frag1 : Fragment (){
         databaseReference.addValueEventListener(dbTodoEventListener)
     }
 
-    private fun setFileListListener(){
+    private fun setFileListListener() {
         val dbFileEventListener = object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 fileList.clear()
-                for (projectData in dataSnapshot.children){
-                    val projectDTO : ProjectDTO = projectData.getValue(ProjectDTO::class.java)!!
-                    if(myProjectPIDlist.contains(projectData.key.toString())) {
-                        for(data in projectData.children) {
-                            if(data.key=="file") {
-                                for(fileData in data.children) {
+                for (projectData in dataSnapshot.children) {
+                    val projectDTO: ProjectDTO = projectData.getValue(ProjectDTO::class.java)!!
+                    if (myProjectPIDlist.contains(projectData.key.toString())) {
+                        for (data in projectData.children) {
+                            if (data.key == "file") {
+                                for (fileData in data.children) {
                                     val fileDTO = fileData.getValue(FileDTO::class.java)
                                     projectDTO.pid = projectData.key.toString()
                                     fileDTO!!.projectdata = projectDTO
@@ -170,12 +172,10 @@ class Frag1 : Fragment (){
             override fun onCancelled(databaseError: DatabaseError) {
                 Log.e("TAG", databaseError.toString())
             }
-
         }
         databaseReference = firebaseDatabase.getReference("ProjectList")
         databaseReference.addValueEventListener(dbFileEventListener)
     }
-
 
 
     private fun findMyProjectFromFirebaseDB() {
@@ -188,13 +188,15 @@ class Frag1 : Fragment (){
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 // 각각 프로젝트별로, 멤버중에 나 자신이 있는지 확인.
                 for (snapshot in dataSnapshot.children) {
-                    val membersPerProject = snapshot.child("members").getValue(MembersDTO::class.java) // memberUID 정보를 가져옴.
-                    val projectDTO : ProjectDTO? = snapshot.getValue(ProjectDTO::class.java)
+                    val membersPerProject = snapshot.child("members")
+                        .getValue(MembersDTO::class.java) // memberUID 정보를 가져옴.
+                    val projectDTO: ProjectDTO? = snapshot.getValue(ProjectDTO::class.java)
 
-                    for(projectSnapshot in snapshot.children) {
+                    for (projectSnapshot in snapshot.children) {
 
                         if (projectSnapshot.key == "progress") {
-                            val progressDTO: ProgressDTO = snapshot.child("progress").getValue(ProgressDTO::class.java)!!
+                            val progressDTO: ProgressDTO =
+                                snapshot.child("progress").getValue(ProgressDTO::class.java)!!
                             projectDTO!!.progressData = progressDTO
                             Log.d("Frag1 ProgressBar---->", progressDTO.toString())
                         }
@@ -208,12 +210,10 @@ class Frag1 : Fragment (){
                 }
                 progressbarAdapterMain.notifyDataSetChanged()
             }
+
             override fun onCancelled(databaseError: DatabaseError) {
                 Log.w("ExtraUserInfoActivity", "loadPost:onCancelled", databaseError.toException())
             }
         })
     }
-
-
-
 }
