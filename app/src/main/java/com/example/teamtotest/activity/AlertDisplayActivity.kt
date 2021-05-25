@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
 import com.example.teamtotest.R
-import kotlinx.android.synthetic.main.activity_alert.*
 import kotlinx.android.synthetic.main.activity_alert_display.*
 
 class AlertDisplayActivity : AppCompatActivity() {

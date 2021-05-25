@@ -59,7 +59,7 @@ class PerformerListAdapter(private val memberList: ArrayList<UserDTO>, private v
         return memberList.size
     }
 
-    public fun getPerformerPositionList() : ArrayList<Int>{
+    fun getPerformerPositionList() : ArrayList<Int>{
         Log.e("getPerformer", performerPositionList.toString())
         return performerPositionList
     }

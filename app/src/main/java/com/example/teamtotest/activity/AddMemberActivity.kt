@@ -50,7 +50,6 @@ class AddMemberActivity : AppCompatActivity() {
         theNumberOfOriginMembers =Integer.parseInt(intent.extras!!.getString("howManyMembers")!!)
         add_member_add_members_text.visibility = View.INVISIBLE
 
-
         // 1. 이미 추가되어있는 멤버들의 리스트를 보여주기
         recyclerInit()
         findMembersUIDFromDB()
@@ -93,8 +92,8 @@ class AddMemberActivity : AppCompatActivity() {
 
     private fun addNewMembersToDB() {
         // 새로운 멤버 정보 DB에 저장
-        when {
-            memberUIDList.size == theNumberOfOriginMembers -> Toast.makeText(this@AddMemberActivity, "추가된 팀원이 없습니다.", Toast.LENGTH_SHORT).show()
+        when (memberUIDList.size) {
+            theNumberOfOriginMembers -> Toast.makeText(this@AddMemberActivity, "추가된 팀원이 없습니다.", Toast.LENGTH_SHORT).show()
             else -> {
                 val membersDTO = MembersDTO(memberUIDList)
                 databaseReference = firebaseDatabase.getReference("ProjectList").child(PID.toString()).child("members")
@@ -130,7 +129,7 @@ class AddMemberActivity : AppCompatActivity() {
         }
     }
 
-    public fun deleteMemberList(position : Int){
+    fun deleteMemberList(position : Int){
 
         if(position > theNumberOfOriginMembers-1) {
             memberNameList.removeAt(position)
@@ -158,10 +157,7 @@ class AddMemberActivity : AppCompatActivity() {
     }
 
     private fun isTheUserAlreadyAdded(): Boolean {
-//        Log.d("지금 확인중인 user UID->", UserUIDList[index])
-//        Log.d("index ->", index.toString() + "")
         for (i in memberUIDList.indices) {
-//            Log.d("이미 등록된 팀원->", memberUIDList[i])
             if (memberUIDList[i] == UserUIDList[index]) {
                 return true
             }
@@ -221,10 +217,7 @@ class AddMemberActivity : AppCompatActivity() {
                 }
 
                 for (i in UserIdList.indices) {
-                    //Log.d("저장된userlist ---> ", UserIdList.get(i));
                     if (UserIdList[i] == inputID) { // 입력한 id를 가진 user를 찾으면
-//                        Log.e("FIND THIS ID!! ---> ", inputID)
-//                        Log.e("index ---> ", index.toString() + "")
                         add_member_userInfo.text = "" + UserNameList[i] + " / " + UserIdList[i]
                         add_member_add_members_text.visibility = View.VISIBLE  // 추가기능 활성화
                         index =i // user의 UID와 name이 담긴 index 저장해두기. --> 나중에 DB에 데이터 넣을때랑, 동그라미이름으로 보여줄 때 사용
@@ -239,6 +232,4 @@ class AddMemberActivity : AppCompatActivity() {
             }
         })
     }
-
-
 }

@@ -10,18 +10,18 @@ import com.example.teamtotest.fragment.*
 import kotlinx.android.synthetic.main.bottom_navigation_layout.*
 
 class NavigationbarActivity : AppCompatActivity() {
-    lateinit var fragment1 : Frag1
-    lateinit var fragment2 : Frag2
-    lateinit var fragment3 : CalendarFragment
-    var time:Long = 0
+    lateinit var fragment1: Frag1
+    lateinit var fragment2: Frag2
+    lateinit var fragment3: CalendarFragment
+    var time: Long = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.bottom_navigation_layout)
 
-        fragment1= Frag1()
-        fragment2= Frag2()
-        fragment3= CalendarFragment()
+        fragment1 = Frag1()
+        fragment2 = Frag2()
+        fragment3 = CalendarFragment()
 
         bottomNavigationView.setOnNavigationItemSelectedListener {
             when (it.itemId) {
@@ -67,10 +67,10 @@ class NavigationbarActivity : AppCompatActivity() {
     }
 
     override fun onBackPressed() {
-        if(System.currentTimeMillis()-time>2000){
-            time=System.currentTimeMillis()
+        if (System.currentTimeMillis() - time > 2000) {
+            time = System.currentTimeMillis()
             Toast.makeText(applicationContext, "뒤로 버튼을 한번 더 누르면 종료합니다.", Toast.LENGTH_SHORT).show()
-        }else if(System.currentTimeMillis()-time<2000){
+        } else if (System.currentTimeMillis() - time < 2000) {
             finish()
         }
     }

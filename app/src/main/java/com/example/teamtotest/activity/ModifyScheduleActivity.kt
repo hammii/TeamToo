@@ -13,11 +13,8 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.teamtotest.Push
 import com.example.teamtotest.R
 import com.example.teamtotest.dto.ScheduleDTO
-import com.example.teamtotest.dto.TodoDTO
 import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.activity_add_schedule.*
-import kotlinx.android.synthetic.main.activity_add_todo.*
-import kotlinx.android.synthetic.main.activity_schedule.*
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -85,6 +82,7 @@ class ModifyScheduleActivity : AppCompatActivity() {
             picker.window!!.setBackgroundDrawableResource(android.R.color.transparent)
             picker.show()
         }
+
         //시작 시간 눌렀을 때
         start_time.setOnClickListener {
             val picker = TimePickerDialog(
@@ -98,6 +96,7 @@ class ModifyScheduleActivity : AppCompatActivity() {
             picker.window!!.setBackgroundDrawableResource(android.R.color.transparent)
             picker.show()
         }
+
         //종료 날짜 눌렀을 때
         end_date.setOnClickListener {
             val picker = DatePickerDialog(
@@ -111,6 +110,7 @@ class ModifyScheduleActivity : AppCompatActivity() {
             picker.window!!.setBackgroundDrawableResource(android.R.color.transparent)
             picker.show()
         }
+
         //종료 시간 눌렀을 때
         end_time.setOnClickListener {
             val picker = TimePickerDialog(

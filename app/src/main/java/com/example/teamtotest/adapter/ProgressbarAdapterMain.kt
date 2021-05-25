@@ -4,10 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.util.Log
 import android.view.LayoutInflater
-import android.view.View
-import android.view.View.GONE
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.example.teamtotest.R
 import com.example.teamtotest.activity.ProgressSettingActivity
@@ -37,7 +34,6 @@ class ProgressbarAdapterMain(private val context: Context,
     override fun onBindViewHolder(holder: ViewHolderHelper, position: Int) {
 
         if(projectDTOList[position]!!.progressData==null) { // 시작일과 마감일 데이터가 없을 때
-
             holder.itemView.item_progress_bar.progress = 0
             holder.itemView.item_progress_percent.text = "(No data)"
             holder.itemView.item_progress_project_name.text = projectDTOList[position]!!.projectName
@@ -60,11 +56,9 @@ class ProgressbarAdapterMain(private val context: Context,
 
             val diffTime = end_cal.get(Calendar.DAY_OF_YEAR) - start_cal.get(Calendar.DAY_OF_YEAR)
 
-//            val diffTime : Int = Date(end_day.time).day - Date(start_day.time).day //ms -> day로 변환
             val today : Date = Date()
             val today_cal = Calendar.getInstance()
             today_cal.time = today
-//            val progressDay : Long = (end_day.time - today.time)
 
             val progressDay = today_cal.get(Calendar.DAY_OF_YEAR) - start_cal.get(Calendar.DAY_OF_YEAR)
 

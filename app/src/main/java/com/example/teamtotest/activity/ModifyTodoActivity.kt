@@ -1,10 +1,8 @@
 package com.example.teamtotest.activity
 
-import android.R
 import android.app.DatePickerDialog
 import android.app.TimePickerDialog
 import android.os.Bundle
-import android.util.Log
 import android.view.MenuItem
 import android.view.View
 import android.widget.AdapterView
@@ -75,6 +73,7 @@ class ModifyTodoActivity : AppCompatActivity() {
             picker.window!!.setBackgroundDrawableResource(android.R.color.transparent)
             picker.show()
         }
+
         //마감기한 시간 눌렀을 때
         deadline_time.setOnClickListener {
             val picker = TimePickerDialog(
@@ -91,7 +90,7 @@ class ModifyTodoActivity : AppCompatActivity() {
 
         //과제 수행자 지정
         todo_btn_select_performer.setOnClickListener {
-            var performerDialog : PerformerDialog = PerformerDialog(this)
+            val performerDialog : PerformerDialog = PerformerDialog(this)
             performerDialog.PID = PID
             performerDialog.prePerformerUIDList = performerUIDList
             performerDialog.callDialog()

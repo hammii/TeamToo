@@ -4,17 +4,13 @@ import android.app.AlertDialog
 import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
-import android.print.PrinterId
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
-import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.example.teamtotest.R
 import com.example.teamtotest.activity.ModifyTodoActivity
-import com.example.teamtotest.activity.ScheduleListActivity
 import com.example.teamtotest.dto.TodoDTO
 import com.example.teamtotest.dto.UserDTO
 import com.google.firebase.database.DataSnapshot

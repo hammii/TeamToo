@@ -61,8 +61,6 @@ class AddProjectActivity : AppCompatActivity() {
 
         createButton.setOnClickListener {
             addUserInfoToDB()
-            //Log.d("Add Activity End!", "testtest");
-
         }
     }
 
@@ -111,7 +109,7 @@ class AddProjectActivity : AppCompatActivity() {
         }
     }
 
-    public fun deleteMemberList(position : Int){
+    fun deleteMemberList(position : Int){
 
         if(position!=0) {
             memberNameList.removeAt(position)
@@ -144,12 +142,9 @@ class AddProjectActivity : AppCompatActivity() {
                     //memberUIDList.add(user.getUID);
                     UserIdList.add(user!!.id)
                     UserNameList.add(user.name)
-                    //Log.d("USERID ---> ", user.getId());
-
                 }
 
                 for (i in UserIdList.indices) {
-                    //Log.d("저장된userlist ---> ", UserIdList.get(i));
                     if (UserIdList[i] == inputID) { // 입력한 id를 가진 user를 찾으면
                         Log.e("FIND THIS ID!! ---> ", inputID)
                         Log.e("index ---> ", index.toString() + "")

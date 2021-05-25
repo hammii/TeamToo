@@ -219,13 +219,11 @@ class AddTodoActivity : AppCompatActivity() {
         val dateFormat = SimpleDateFormat("yyyyMMddHHmmss")
         val date_formatted = dateFormat.format(utc)
 
-
         databaseReference = firebaseDatabase!!.getReference()
         databaseReference =
             databaseReference!!.child("ProjectList").child(PID.toString()).child("messageList")
                 .child(date_formatted)
         databaseReference!!.setValue(messageDTO)
-
     }
 
     private fun getTime(date: Calendar, position: Int): Long {

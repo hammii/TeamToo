@@ -96,7 +96,6 @@ class LoginActivity : AppCompatActivity() {
                     Toast.makeText(this, "구글 로그인 실패", Toast.LENGTH_SHORT).show()
                 }
             }
-//        Log.e("TAG", "error")
     }
 
     private fun signOut() {

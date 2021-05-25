@@ -145,6 +145,7 @@ class AddScheduleActivity : AppCompatActivity() {
                     alarmPosition,
                     schedule_et_note.text.toString()
                 )
+
                 //DB에 업로드
                 firebaseDatabase = FirebaseDatabase.getInstance()
                 PID = intent.getStringExtra("PID")
@@ -152,7 +153,6 @@ class AddScheduleActivity : AppCompatActivity() {
                     firebaseDatabase.getReference("ProjectList").child(PID.toString())
                         .child("scheduleList")
                 databaseReference.push().setValue(scheduleDTO)
-
 
                 if (alarmPosition != 0) {
                     // 알림 매니저에 넘겨줄 intent
@@ -172,8 +172,6 @@ class AddScheduleActivity : AppCompatActivity() {
                 Push(PID.toString(), schedule_et_name.text.toString(), "Schedule")
 
                 addMessageNotificationToDB(scheduleDTO)
-
-
 
                 finish()
             }
@@ -209,7 +207,6 @@ class AddScheduleActivity : AppCompatActivity() {
         when (item.itemId) {
             android.R.id.home -> onBackPressed()
         }
-
         return super.onOptionsItemSelected(item)
     }
 

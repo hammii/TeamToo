@@ -1,6 +1,5 @@
 package com.example.teamtotest.adapter
 
-import android.app.Activity
 import android.app.AlertDialog
 import android.content.Context
 import android.content.DialogInterface
@@ -11,7 +10,6 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.teamtotest.R
 import com.example.teamtotest.activity.ModifyScheduleActivity
-import com.example.teamtotest.activity.ModifyTodoActivity
 import com.example.teamtotest.dto.ScheduleDTO
 import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.item_schedule_list.view.*

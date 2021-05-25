@@ -39,7 +39,6 @@ class ChatActivity : AppCompatActivity() {
     private var PID : String? = null
     private var projectName : String? = null
     private var howManyMembers : String? = null
-//    private var userDTOList : HashMap<String, UserDTO> ?= null
     private lateinit var filePath : Uri
 
     private var ChatMessageList: ArrayList<HashMap<String, String>> = ArrayList<HashMap<String, String>>()
@@ -161,9 +160,6 @@ class ChatActivity : AppCompatActivity() {
 
     override fun onStart() {
         super.onStart()
-//        getUserInfos()
-//        Thread.sleep(300)
-//        setListener_MessageData()
         setListener_theNumOfMembersFromMyProjects()
         readCheckToDB()
     }

@@ -6,7 +6,6 @@ import android.os.Bundle
 import android.util.Log
 import android.view.MenuItem
 import com.example.teamtotest.R
-import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -26,7 +25,6 @@ class MyInfoActivity : AppCompatActivity() {
         // Toolbar
         setSupportActionBar(my_info_toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true) // 뒤로가기 버튼 만들기
-
 
         firebaseAuth = FirebaseAuth.getInstance()
         firebaseDatabase = FirebaseDatabase.getInstance()
@@ -52,7 +50,6 @@ class MyInfoActivity : AppCompatActivity() {
                 Log.w("ExtraUserInfoActivity", "loadPost:onCancelled", databaseError.toException())
             }
         })
-
 
         // Log out
         log_out_button.setOnClickListener { view ->

@@ -11,21 +11,15 @@ import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.annotation.RequiresApi
-import androidx.constraintlayout.solver.widgets.Helper
 import androidx.recyclerview.widget.RecyclerView
 import com.example.teamtotest.R
 import com.example.teamtotest.activity.FileActivity
 import com.example.teamtotest.dto.FileDTO
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
-import com.google.firebase.storage.FileDownloadTask
 import com.google.firebase.storage.FirebaseStorage
-import com.google.firebase.storage.OnProgressListener
-import com.google.firebase.storage.StorageReference
-import kotlinx.android.synthetic.main.activity_file.*
 import kotlinx.android.synthetic.main.item_file.view.*
 import java.io.File
-import java.io.IOException
 
 
 class FileAdapter(
@@ -42,8 +36,7 @@ class FileAdapter(
     private var databaseReference: DatabaseReference? = null
     private var firebaseStorage: FirebaseStorage? = null
 
-    inner class MyViewHolder(v: View) :
-        RecyclerView.ViewHolder(v)
+    inner class MyViewHolder(v: View) : RecyclerView.ViewHolder(v)
 
 
     override fun onCreateViewHolder(

@@ -1,9 +1,7 @@
 package com.example.teamtotest.activity
 
 import android.annotation.SuppressLint
-import android.app.AlertDialog
 import android.app.DatePickerDialog
-import android.content.DialogInterface
 import android.os.Bundle
 import android.util.Log
 import android.widget.DatePicker
@@ -70,7 +68,7 @@ class ProgressSettingActivity : AppCompatActivity() {
             end_day == null -> {Toast.makeText(this, "종료일을 설정해주세요", Toast.LENGTH_SHORT).show()}
             start_day!!.time.toLong() > end_day!!.time.toLong() -> {Toast.makeText(this, "시작일보다 종료일이 빠릅니다", Toast.LENGTH_SHORT).show()}
             else -> {
-                var progressDTO : ProgressDTO = ProgressDTO()
+                val progressDTO : ProgressDTO = ProgressDTO()
                 progressDTO.startDate = dateFormat.format(start_day)
                 progressDTO.endDate = dateFormat.format(end_day)
                 databaseReference.child(PID!!).child("progress").setValue(progressDTO)
@@ -84,12 +82,6 @@ class ProgressSettingActivity : AppCompatActivity() {
     @SuppressLint("SetTextI18n")
     private fun calendarInit(){
         val calendar : Calendar = Calendar.getInstance()
-
-        // default는 오늘날짜
-//        progress_startday.text = ""+calendar.get(Calendar.YEAR)+" / "+(calendar.get((Calendar.MONTH))+1)+" / "+calendar.get(Calendar.DAY_OF_MONTH)
-//        progress_endday.text = ""+calendar.get(Calendar.YEAR)+" / "+(calendar.get((Calendar.MONTH))+1)+" / "+calendar.get(Calendar.DAY_OF_MONTH)
-//        progress_startday.text = "미설정"
-////        progress_endday.text = "미설정"
 
         date_listener = DatePickerDialog.OnDateSetListener{ datePicker: DatePicker, year: Int, month: Int, day: Int ->
 

@@ -25,13 +25,11 @@ import kotlin.collections.ArrayList
 import kotlin.collections.HashMap
 import kotlin.collections.set
 import android.app.ProgressDialog
-import android.os.Message
 import android.view.View
 import android.widget.ProgressBar
 
 
 class FileActivity : AppCompatActivity() {
-
 
     private var firebaseDatabase: FirebaseDatabase? = null
     private var databaseReference: DatabaseReference? = null
@@ -43,8 +41,6 @@ class FileActivity : AppCompatActivity() {
     private var PID: String? = null
 
     lateinit var myAdapter: FileAdapter
-
-//    private val TAG : String = "FileActivity"
 
     private lateinit var filePath: Uri
     lateinit var progrssBar: ProgressBar
@@ -62,7 +58,6 @@ class FileActivity : AppCompatActivity() {
 
         val intent = intent /*데이터 수신*/
         PID = intent.extras!!.getString("PID")
-
     }
 
     override fun onStart() {
@@ -91,8 +86,8 @@ class FileActivity : AppCompatActivity() {
 
     private fun getFileName(uri: Uri): String? {
         var result: String? = null
-        if (uri.scheme!!.equals("content")) {
-            var cursor: Cursor? = contentResolver.query(uri, null, null, null, null)
+        if (uri.scheme!! == "content") {
+            val cursor: Cursor? = contentResolver.query(uri, null, null, null, null)
             try {
                 if (cursor != null && cursor.moveToFirst()) {
                     result = cursor.getString(cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME))
@@ -137,38 +132,35 @@ class FileActivity : AppCompatActivity() {
     }
 
     private fun uploadFile(filename: String?) { //업로드할 파일이 있으면 수행
-        if (filePath != null) { //storage
-            val storage = FirebaseStorage.getInstance()
+        //storage
+        val storage = FirebaseStorage.getInstance()
 
-            //storage 주소와 폴더 파일명을 지정해 준다.
-            val storageRef = storage.getReferenceFromUrl("gs://teamtogether-bdfc9.appspot.com")
+        //storage 주소와 폴더 파일명을 지정해 준다.
+        val storageRef = storage.getReferenceFromUrl("gs://teamtogether-bdfc9.appspot.com")
 
-            file_loadingCircle.visibility = View.VISIBLE
+        file_loadingCircle.visibility = View.VISIBLE
 
-            storageRef.child(filename!!).putFile(filePath) //성공시
-                .addOnSuccessListener {
-                    file_loadingCircle.visibility = View.INVISIBLE
-                    Toast.makeText(applicationContext, "업로드 완료!", Toast.LENGTH_SHORT).show()
-                    myAdapter.notifyDataSetChanged()
-                } //완료
+        storageRef.child(filename!!).putFile(filePath) //성공시
+            .addOnSuccessListener {
+                file_loadingCircle.visibility = View.INVISIBLE
+                Toast.makeText(applicationContext, "업로드 완료!", Toast.LENGTH_SHORT).show()
+                myAdapter.notifyDataSetChanged()
+            } //완료
 //                .addOnProgressListener {
 //                    Toast.makeText(applicationContext, "업로드 중...", Toast.LENGTH_SHORT).show()
 //                }
-                .addOnFailureListener {
-                    Toast.makeText(
-                        applicationContext,
-                        "업로드 실패!",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                } //실패
-        } else {
-            Toast.makeText(applicationContext, "파일을 먼저 선택하세요.", Toast.LENGTH_SHORT).show()
-        }
+            .addOnFailureListener {
+                Toast.makeText(
+                    applicationContext,
+                    "업로드 실패!",
+                    Toast.LENGTH_SHORT
+                ).show()
+            } //실패
         uploadFileInfoToDB(filename!!)
     }
 
     private fun uploadFileInfoToDB(fileName: String) {
-        var firebaseAuth: FirebaseAuth = FirebaseAuth.getInstance()
+        val firebaseAuth: FirebaseAuth = FirebaseAuth.getInstance()
         val uid: String = firebaseAuth.currentUser!!.uid
         val userName: String = firebaseAuth.currentUser!!.displayName!!
 

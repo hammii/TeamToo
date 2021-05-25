@@ -87,9 +87,6 @@ class AlertActivity : AppCompatActivity() {
                 editor.putInt("display_text",display.currentTextColor)
                 editor.commit()
             }
-
-
-
         }
 
         // 진동 switch On
@@ -138,6 +135,4 @@ class AlertActivity : AppCompatActivity() {
             else -> super.onOptionsItemSelected(item)
         }
     }
-
-
 }

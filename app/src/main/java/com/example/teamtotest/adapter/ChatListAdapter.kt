@@ -13,7 +13,6 @@ import kotlinx.android.synthetic.main.item_chat_list2.view.*
 import kotlinx.android.synthetic.main.item_chat_noti1.view.*
 import kotlinx.android.synthetic.main.item_chat_noti2.view.*
 import kotlinx.android.synthetic.main.item_chat_notification.view.*
-import java.text.SimpleDateFormat
 import java.util.*
 
 
@@ -28,22 +27,21 @@ class ChatListAdapter(var ChatMessage : ArrayList<HashMap<String,String>>) //MyA
 
     init {
         this.ChatMessageList = ChatMessage
-
     }
 
     override fun getItemViewType(position: Int): Int {
         val userUID = ChatMessageList!![position]["userUID"]
 
         if(ChatMessageList!![position]["who"]=="")
-            return 3;
+            return 3
         if(ChatMessageList!![position]["todoName"]!=null && firebaseAuth.currentUser!!.uid != userUID)
-            return 4;
+            return 4
         if(ChatMessageList!![position]["todoName"]!=null && firebaseAuth.currentUser!!.uid == userUID)
-            return 5;
+            return 5
         if(ChatMessageList!![position]["scheduleName"]!=null && firebaseAuth.currentUser!!.uid != userUID)
-            return 6;
+            return 6
         if(ChatMessageList!![position]["scheduleName"]!=null && firebaseAuth.currentUser!!.uid == userUID)
-            return 7;
+            return 7
         return if (firebaseAuth.currentUser!!.uid == userUID) { //** 이거 UID로 비교하는걸로 바꿔야함
             2
         } else {
@@ -55,22 +53,31 @@ class ChatListAdapter(var ChatMessage : ArrayList<HashMap<String,String>>) //MyA
 
         var layoutId = 0
 
-        if (viewType == 1) {    // 남일때
-            layoutId = R.layout.item_chat_list1
-        } else if (viewType == 2) {  // 나일때
-            layoutId = R.layout.item_chat_list2
-        } else if (viewType == 3) {
-            layoutId = R.layout.item_chat_notification
-        } else if (viewType == 4) {  // 남일때
-            layoutId = R.layout.item_chat_noti1
-        } else if (viewType == 5) {
-            layoutId = R.layout.item_chat_noti2
-        } else if (viewType == 6) {  // 남일때
-            layoutId = R.layout.item_chat_noti1
-        } else if (viewType == 7) {
-            layoutId = R.layout.item_chat_noti2
-        } else {
-            Log.d("View type 오류 : ", viewType.toString() + "")
+        when (viewType) {
+            1 -> {    // 남일때
+                layoutId = R.layout.item_chat_list1
+            }
+            2 -> {  // 나일때
+                layoutId = R.layout.item_chat_list2
+            }
+            3 -> {
+                layoutId = R.layout.item_chat_notification
+            }
+            4 -> {  // 남일때
+                layoutId = R.layout.item_chat_noti1
+            }
+            5 -> {
+                layoutId = R.layout.item_chat_noti2
+            }
+            6 -> {  // 남일때
+                layoutId = R.layout.item_chat_noti1
+            }
+            7 -> {
+                layoutId = R.layout.item_chat_noti2
+            }
+            else -> {
+                Log.d("View type 오류 : ", viewType.toString() + "")
+            }
         }
 
         val v = LayoutInflater.from(parent.context)

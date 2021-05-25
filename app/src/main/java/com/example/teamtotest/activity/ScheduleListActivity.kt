@@ -4,11 +4,9 @@ import android.os.Bundle
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.example.teamtotest.R
 import com.example.teamtotest.adapter.ScheduleListRVAdapter
 import com.example.teamtotest.dto.ScheduleDTO
-import kotlinx.android.synthetic.main.activity_schedule.*
 import kotlinx.android.synthetic.main.activity_schedule_list.*
 
 class ScheduleListActivity : AppCompatActivity() {

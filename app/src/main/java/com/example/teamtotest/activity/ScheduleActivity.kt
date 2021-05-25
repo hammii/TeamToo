@@ -1,13 +1,11 @@
 package com.example.teamtotest.activity
 
 import android.content.Intent
-import android.net.sip.SipSession
 import android.os.Bundle
 import android.util.Log
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.example.teamtotest.BaseCalendar
 import com.example.teamtotest.R
 import com.example.teamtotest.adapter.RVAdapter

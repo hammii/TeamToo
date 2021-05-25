@@ -7,23 +7,15 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.teamtotest.R
 import com.example.teamtotest.activity.FileActivity
-import com.example.teamtotest.activity.ModifyTodoActivity
 import com.example.teamtotest.dto.FileDTO
-import com.example.teamtotest.dto.ProjectDTO
-import com.example.teamtotest.dto.TodoDTO
-import com.google.firebase.database.FirebaseDatabase
 import kotlinx.android.synthetic.main.item_file_dashboard.view.*
-import kotlinx.android.synthetic.main.item_todo_dashboard.view.*
-import java.util.*
 import kotlin.collections.ArrayList
-import kotlin.math.absoluteValue
 
 class FileRVAdapterMain(
     private val context: Context,
     private var fileDTO: ArrayList<FileDTO>
 ) :
     RecyclerView.Adapter<ViewHolderHelper>() {
-    private val today = Calendar.getInstance()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolderHelper {
         val view =

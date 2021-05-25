@@ -27,7 +27,6 @@ class TodoActivity : AppCompatActivity() {
         //상단바
         setSupportActionBar(todo_toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-
     }
 
     //상단바

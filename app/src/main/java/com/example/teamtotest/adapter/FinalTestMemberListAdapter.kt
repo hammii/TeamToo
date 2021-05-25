@@ -12,14 +12,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.teamtotest.FinalTestDialog
 import com.example.teamtotest.R
 import com.example.teamtotest.activity.FinalTestActivity
-import kotlinx.android.synthetic.main.activity_final_test.*
 import kotlinx.android.synthetic.main.item_final_test_member.view.*
 import java.text.SimpleDateFormat
-import java.time.LocalDateTime
 import java.util.*
 import kotlin.collections.ArrayList
 
-//class FinalTestMemberListAdapter(private val MemberNameList: ArrayList<String>, context : Context)
 class FinalTestMemberListAdapter(private val MemberNameList: ArrayList<String>, activity : FinalTestActivity, final_test_date_:String?)
     : RecyclerView.Adapter<FinalTestMemberListAdapter.MyViewHolder>() {
 
