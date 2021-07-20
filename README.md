@@ -28,12 +28,9 @@ Team Project Management Android App
 ![image](https://user-images.githubusercontent.com/37904738/124617943-4fd77f80-deb2-11eb-9a27-5aaf261abb9f.png)
 
 ### Project Management & Chatting
-<p>
-<img width="24%" alt="image" src="https://user-images.githubusercontent.com/37904738/124614705-7e079000-deaf-11eb-93d3-40e9f2abf3aa.png">
-<img width="24%" alt="image" src="https://user-images.githubusercontent.com/37904738/124614714-81028080-deaf-11eb-99a3-0aca2beb2fa3.png">
-<img width="24%" alt="image" src="https://user-images.githubusercontent.com/37904738/124614746-895abb80-deaf-11eb-87d3-14a0e0bfe93a.png">
-<img width="24%" alt="image" src="https://user-images.githubusercontent.com/37904738/124614763-8e1f6f80-deaf-11eb-9751-857e13dd2a89.png">
-</p>
+![image](https://user-images.githubusercontent.com/37904738/124614705-7e079000-deaf-11eb-93d3-40e9f2abf3aa.png)
+![image](https://user-images.githubusercontent.com/37904738/124614746-895abb80-deaf-11eb-87d3-14a0e0bfe93a.png)
+![image](https://user-images.githubusercontent.com/37904738/124614763-8e1f6f80-deaf-11eb-9751-857e13dd2a89.png)
 
 ### File Sharing
 <p>
