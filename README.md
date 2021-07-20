@@ -28,16 +28,20 @@ Team Project Management Android App
 ![image](https://user-images.githubusercontent.com/37904738/124617943-4fd77f80-deb2-11eb-9a27-5aaf261abb9f.png)
 
 ### Project Management & Chatting
-![image](https://user-images.githubusercontent.com/37904738/124614705-7e079000-deaf-11eb-93d3-40e9f2abf3aa.png)
-![image](https://user-images.githubusercontent.com/37904738/124614714-81028080-deaf-11eb-99a3-0aca2beb2fa3.png)
-![image](https://user-images.githubusercontent.com/37904738/124614746-895abb80-deaf-11eb-87d3-14a0e0bfe93a.png)
-![image](https://user-images.githubusercontent.com/37904738/124614763-8e1f6f80-deaf-11eb-9751-857e13dd2a89.png)
+<p>
+<img width="24%" alt="image" src="https://user-images.githubusercontent.com/37904738/124614705-7e079000-deaf-11eb-93d3-40e9f2abf3aa.png">
+<img width="24%" alt="image" src="https://user-images.githubusercontent.com/37904738/124614714-81028080-deaf-11eb-99a3-0aca2beb2fa3.png">
+<img width="24%" alt="image" src="https://user-images.githubusercontent.com/37904738/124614746-895abb80-deaf-11eb-87d3-14a0e0bfe93a.png">
+<img width="24%" alt="image" src="https://user-images.githubusercontent.com/37904738/124614763-8e1f6f80-deaf-11eb-9751-857e13dd2a89.png">
+</p>
 
 ### File Sharing
-![image](https://user-images.githubusercontent.com/37904738/124615512-4f3de980-deb0-11eb-9514-629717984dbc.png)
-![image](https://user-images.githubusercontent.com/37904738/124615692-798fa700-deb0-11eb-8533-72e66114a6dd.png)
-![image](https://user-images.githubusercontent.com/37904738/124616249-e145f200-deb0-11eb-8bad-9ec33a92b03d.png)
-![image](https://user-images.githubusercontent.com/37904738/124616244-dee39800-deb0-11eb-8dd1-7f7837d60fb9.png)
+<p>
+<img width="24%" alt="image" src="https://user-images.githubusercontent.com/37904738/124615512-4f3de980-deb0-11eb-9514-629717984dbc.png">
+<img width="24%" alt="image" src="https://user-images.githubusercontent.com/37904738/124615692-798fa700-deb0-11eb-8533-72e66114a6dd.png">
+<img width="24%" alt="image" src="https://user-images.githubusercontent.com/37904738/124616249-e145f200-deb0-11eb-8bad-9ec33a92b03d.png">
+<img width="24%" alt="image" src="https://user-images.githubusercontent.com/37904738/124616244-dee39800-deb0-11eb-8dd1-7f7837d60fb9.png">
+</p>
 
 ### Schedule Management
 <p>
